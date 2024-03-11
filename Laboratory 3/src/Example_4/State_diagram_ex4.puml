@@ -1,0 +1,15 @@
+@startuml
+title Thread Lifecycle
+
+[*] --> New : ThreadEx created
+New --> Runnable : start()
+Runnable --> Running : Thread scheduler
+Running --> Waiting : sleep(1000)
+Running --> Runnable : run()
+Runnable --> Terminated : stopThread()
+Waiting --> Runnable : sleep over
+Runnable --> Blocked : synchronized block
+Blocked --> Runnable : released lock
+Terminated --> [*]
+
+@enduml

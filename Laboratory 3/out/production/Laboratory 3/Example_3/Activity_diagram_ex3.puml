@@ -1,0 +1,22 @@
+@startuml
+start
+:Create Thread 1;
+:Start Thread 1;
+:Thread 1 enters run() method;
+:Thread 1 executes operation;
+:Calculate divisors of number > 50000;
+:Sum divisors;
+:Assign sum to static variable;
+:Thread 1 terminates operation;
+:Create Thread 2;
+:Start Thread 2;
+:Thread 2 enters run() method;
+:Thread 2 waits for Thread 1 to complete;
+:Thread 2 executes operation;
+:Calculate divisors of number > 20000;
+:Sum divisors;
+:Add sum to static variable;
+:Thread 2 terminates operation;
+:Display result in console;
+stop
+@enduml

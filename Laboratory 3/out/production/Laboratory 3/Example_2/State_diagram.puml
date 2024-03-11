@@ -1,0 +1,32 @@
+@startuml
+title Buffer Producer Consumer State Diagram
+
+[*] --> Main : Application Starts
+state Main {
+  [*] --> Producer : Create Producer
+  [*] --> Consumer : Create Consumer
+
+  state Producer {
+    [*] --> Running : Start
+    Running --> Running : Produce
+    Running --> [*] : End
+  }
+
+  state Consumer {
+    [*] --> Running : Start
+    Running --> Running : Consume
+    Running --> [*] : End
+  }
+}
+
+state Buffer {
+  [*] --> Empty : Initialize
+  Empty --> HasItems : Put
+  HasItems --> Empty : Get
+}
+
+Main --> Buffer : Uses
+Producer --> Buffer : Uses
+Consumer --> Buffer : Uses
+
+@enduml

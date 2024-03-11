@@ -1,0 +1,19 @@
+@startuml
+[*] --> Thread1Created : Create Thread 1
+Thread1Created --> Thread1Started : Start Thread 1
+Thread1Started --> Thread1Running : Thread 1 enters run() method
+Thread1Running --> Thread1Calculating : Calculate divisors of number > 50000
+Thread1Calculating --> Thread1Summing : Sum divisors
+Thread1Summing --> Thread1Assigning : Assign sum to static variable
+Thread1Assigning --> Thread1Terminated : Thread 1 terminates operation
+Thread1Terminated --> Thread2Created : Create Thread 2
+Thread2Created --> Thread2Started : Start Thread 2
+Thread2Started --> Thread2Running : Thread 2 enters run() method
+Thread2Running --> Thread2Waiting : Thread 2 waits for Thread 1 to complete
+Thread2Waiting --> Thread2Calculating : Calculate divisors of number > 20000
+Thread2Calculating --> Thread2Summing : Sum divisors
+Thread2Summing --> Thread2Adding : Add sum to static variable
+Thread2Adding --> Thread2Terminated : Thread 2 terminates operation
+Thread2Terminated --> ResultDisplayed : Display result in console
+ResultDisplayed --> [*]
+@enduml

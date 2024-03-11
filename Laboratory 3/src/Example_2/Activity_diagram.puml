@@ -1,0 +1,37 @@
+@startuml
+title Buffer Producer Consumer Activity Diagram
+
+start
+
+:Application Starts;
+
+fork
+  :Create Producer;
+  :Start Producer;
+  while (Producer is Running) is (yes)
+    :Producer gives a task;
+    :Producer sleeps;
+  endwhile (no)
+endfork
+
+fork
+  :Create Consumer;
+  :Start Consumer;
+  while (Consumer is Running) is (yes)
+    :Consumer receives task;
+  endwhile (no)
+endfork
+
+fork
+  :Initialize Buffer;
+  while (Buffer is in use) is (yes)
+    if (Buffer is empty) then (yes)
+      :Wait for task;
+    else (no)
+      :Get task;
+    endif
+  endwhile (no)
+endfork
+
+stop
+@enduml

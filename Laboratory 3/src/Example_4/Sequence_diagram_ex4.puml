@@ -1,0 +1,45 @@
+@startuml
+title Thread Sequence Diagram
+
+participant "main()" as M
+participant "ThreadGroup tg" as TG
+participant "ThreadEx fir1" as T1
+participant "ThreadEx fir2" as T2
+participant "ThreadEx fir3" as T3
+
+M -> TG : new ThreadGroup("Group of threads")
+M -> T1 : new ThreadEx(tg, "ThreadEx #1")
+M -> T2 : new ThreadEx(tg, "ThreadEx #2")
+M -> T3 : new ThreadEx(tg, "ThreadEx #3")
+
+M -> T1 : start()
+activate T1
+T1 -> T1 : run()
+note right: ThreadEx #1 is running
+
+M -> T2 : start()
+activate T2
+T2 -> T2 : run()
+note right: ThreadEx #2 is running
+
+M -> T3 : start()
+activate T3
+T3 -> T3 : run()
+note right: ThreadEx #3 is running
+
+M -> M : sleep(1000)
+note right: main thread sleeps for 1 second
+
+M -> T1 : stopThread()
+deactivate T1
+note right: ThreadEx #1 is stopped
+
+M -> M : sleep(1000)
+note right: main thread sleeps for 1 second
+
+M -> TG : interrupt()
+note right: All threads in the group are interrupted
+deactivate T2
+deactivate T3
+
+@enduml

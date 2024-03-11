@@ -1,0 +1,23 @@
+@startuml
+participant Main
+participant WriteThread
+participant ReadThread
+
+Main -> WriteThread : new()
+Main -> ReadThread : new()
+Main -> ReadThread : conect(WriteThread.getPipe())
+Main -> WriteThread : start()
+Main -> ReadThread : start()
+
+loop
+    WriteThread -> WriteThread : run()
+    WriteThread -> Main : System.out.println("Writing Thread is sent : "+d)
+    WriteThread -> WriteThread : po.write(d)
+    WriteThread -> WriteThread : sleep(400)
+end
+
+loop
+    ReadThread -> ReadThread : run()
+    ReadThread -> Main : System.out.println("Read Thread is received : "+pi.read())
+end
+@enduml
