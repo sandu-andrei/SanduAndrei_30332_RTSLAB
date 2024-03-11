@@ -1,0 +1,24 @@
+@startuml
+participant Main
+participant Window
+participant Fir
+
+Main -> Window : new Window(noOfThreads)
+activate Window
+
+loop noOfThreads times
+    Main -> Fir : new Fir(id, priority, procLoad)
+    activate Fir
+    Fir -> Fir : addObserver(Window)
+    Main -> Fir : new Thread(Fir).start()
+    activate Fir
+    loop 1000 times
+        Fir -> Fir : run()
+        Fir -> Window : setChanged()\nnotifyObservers(c)
+        Window -> Window : update(Fir, c)
+    end
+    deactivate Fir
+end
+
+deactivate Window
+@enduml

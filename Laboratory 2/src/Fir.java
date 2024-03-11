@@ -22,6 +22,11 @@ public class Fir extends Observable implements Runnable {
             c++;
             setChanged();
             notifyObservers(c);
+            try {
+                Thread.sleep(10); // sleep for 10 milliseconds
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
     }
 }

@@ -1,0 +1,48 @@
+@startuml
+class Main {
+    - noOfThreads: int
+    - processorLoad: int
+    + main(args: String[]): void
+}
+
+class JFrame {
+}
+
+interface Observer {
+    + update(obs: Observable, obj: Object): void
+}
+
+class Window extends JFrame implements Observer {
+    - bars: ArrayList<JProgressBar>
+    + Window(nrThreads: int)
+    + update(obs: Observable, obj: Object): void
+    - init(n: int): void
+}
+
+interface Runnable {
+    + run(): void
+}
+
+interface Observable {
+    + addObserver(o: Observer): void
+    + deleteObserver(o: Observer): void
+    + notifyObservers(): void
+}
+
+class Fir implements Runnable, Observable {
+    - id: int
+    - processorLoad: int
+    - priority: int
+    + Fir(id: int, priority: int, procLoad: int)
+    + run(): void
+}
+
+Main -- Window : Creates >
+Main -- Fir : Creates >
+Fir ..> Window : Notifies >
+legend left
+     [    ]- Private
+     [    ]- Public
+endlegend
+
+@enduml
