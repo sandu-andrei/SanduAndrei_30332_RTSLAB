@@ -1,0 +1,24 @@
+@startuml
+title Activity Diagram
+
+start
+:Main;
+if (stopThreads) then (yes)
+  :Stop Threads;
+else (no)
+  :Create FileService;
+  :Create RThread;
+  :Create WThread;
+  fork
+    :RThread run;
+    :Read from file;
+    :Print message;
+  endfork
+  fork
+    :WThread run;
+    :Write to file;
+  endfork
+endif
+stop
+
+@enduml

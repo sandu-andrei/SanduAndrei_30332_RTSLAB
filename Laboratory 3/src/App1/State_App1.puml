@@ -1,0 +1,13 @@
+@startuml
+title State Machine Diagram
+
+[*] --> Main : start
+Main --> FileService : create
+FileService --> RThread : create
+FileService --> WThread : create
+RThread --> RThread : run
+WThread --> WThread : run
+RThread --> [*] : stop
+WThread --> [*] : stop
+
+@enduml
