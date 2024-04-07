@@ -1,0 +1,19 @@
+@startuml
+
+[*] --> S1_1 : First Thread
+S1_1 --> S1_2 : sleep[x]
+S1_2 --> S1_3 : acquire[monitor1]
+S1_3 --> S1_4 : release[monitor1]
+S1_4 --> S1_5 : acquire[monitor2]
+S1_5 --> S1_6 : release[monitor2]
+S1_6 --> [*]
+
+[*] --> S2_1 : Second Thread
+S2_1 --> S2_2 : sleep[y]
+S2_2 --> S2_3 : acquire[monitor2]
+S2_3 --> S2_4 : release[monitor2]
+S2_4 --> S2_5 : acquire[monitor1]
+S2_5 --> S2_6 : release[monitor1]
+S2_6 --> [*]
+
+@enduml

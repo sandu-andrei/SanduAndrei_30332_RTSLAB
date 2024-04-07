@@ -1,0 +1,24 @@
+@startuml
+participant Main
+participant ExecutionThread
+
+Main -> ExecutionThread : new ExecutionThread(monitor, 2, 4, 3, 6)
+activate ExecutionThread
+ExecutionThread -> ExecutionThread : run()
+activate ExecutionThread
+ExecutionThread -> ExecutionThread : sleep()
+ExecutionThread -> ExecutionThread : synchronized(monitor)
+ExecutionThread -> ExecutionThread : for loop
+deactivate ExecutionThread
+ExecutionThread --> Main
+
+Main -> ExecutionThread : new ExecutionThread(monitor, 3, 5, 4, 7)
+activate ExecutionThread
+ExecutionThread -> ExecutionThread : run()
+activate ExecutionThread
+ExecutionThread -> ExecutionThread : sleep()
+ExecutionThread -> ExecutionThread : synchronized(monitor)
+ExecutionThread -> ExecutionThread : for loop
+deactivate ExecutionThread
+ExecutionThread --> Main
+@enduml

@@ -1,0 +1,17 @@
+@startuml
+class ExecutionThread extends Thread {
+  -Integer monitor
+  -int sleep_min
+  -int sleep_max
+  -int activity_min
+  -int activity_max
+  +ExecutionThread(Integer monitor, int sleep_min, int sleep_max, int activity_min, int activity_max)
+  +void run()
+}
+
+class Main {
+  +static void main(String[] args)
+}
+
+ExecutionThread -- Main
+@enduml

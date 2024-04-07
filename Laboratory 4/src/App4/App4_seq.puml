@@ -1,0 +1,38 @@
+@startuml
+participant "Main" as M
+participant "ExecutionThread1" as ET1
+participant "ExecutionThread2" as ET2
+participant "ExecutionThread3" as ET3
+
+M -> ET1 : new ExecutionThread(monitor1, monitor2, 7, 7, 2, 3)
+activate ET1
+M -> ET2 : new ExecutionThread(monitor1, monitor2, 3, 5, 3, 5)
+activate ET2
+M -> ET3 : new ExecutionThread(monitor1, monitor2, 4, 6, 4, 6)
+activate ET3
+
+M -> ET1 : start()
+ET1 -> ET1 : sleep(x)
+ET1 -> ET1 : acquire(monitor1)
+ET1 -> ET1 : release(monitor1)
+ET1 -> ET1 : acquire(monitor2)
+ET1 -> ET1 : release(monitor2)
+
+M -> ET2 : start()
+ET2 -> ET2 : sleep(y)
+ET2 -> ET2 : acquire(monitor1)
+ET2 -> ET2 : release(monitor1)
+ET2 -> ET2 : acquire(monitor2)
+ET2 -> ET2 : release(monitor2)
+
+M -> ET3 : start()
+ET3 -> ET3 : sleep(z)
+ET3 -> ET3 : acquire(monitor1)
+ET3 -> ET3 : release(monitor1)
+ET3 -> ET3 : acquire(monitor2)
+ET3 -> ET3 : release(monitor2)
+
+deactivate ET1
+deactivate ET2
+deactivate ET3
+@enduml
