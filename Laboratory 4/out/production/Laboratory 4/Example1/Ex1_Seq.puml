@@ -1,24 +1,23 @@
 @startuml
-participant Main
-participant ExecutionThread
+participant "Main" as M
+participant "ExecutionThread1" as ET1
+participant "ExecutionThread2" as ET2
 
-Main -> ExecutionThread : new ExecutionThread(monitor, 2, 4, 3, 6)
-activate ExecutionThread
-ExecutionThread -> ExecutionThread : run()
-activate ExecutionThread
-ExecutionThread -> ExecutionThread : sleep()
-ExecutionThread -> ExecutionThread : synchronized(monitor)
-ExecutionThread -> ExecutionThread : for loop
-deactivate ExecutionThread
-ExecutionThread --> Main
+M -> ET1 : new ExecutionThread(monitor, 2, 4, 3, 6)
+activate ET1
+M -> ET2 : new ExecutionThread(monitor, 3, 5, 4, 7)
+activate ET2
 
-Main -> ExecutionThread : new ExecutionThread(monitor, 3, 5, 4, 7)
-activate ExecutionThread
-ExecutionThread -> ExecutionThread : run()
-activate ExecutionThread
-ExecutionThread -> ExecutionThread : sleep()
-ExecutionThread -> ExecutionThread : synchronized(monitor)
-ExecutionThread -> ExecutionThread : for loop
-deactivate ExecutionThread
-ExecutionThread --> Main
+M -> ET1 : start()
+ET1 -> ET1 : sleep(x)
+ET1 -> ET1 : acquire(P8)
+ET1 -> ET1 : release(P8)
+
+M -> ET2 : start()
+ET2 -> ET2 : sleep(y)
+ET2 -> ET2 : acquire(P8)
+ET2 -> ET2 : release(P8)
+
+deactivate ET1
+deactivate ET2
 @enduml

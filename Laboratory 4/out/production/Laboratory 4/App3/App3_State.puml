@@ -1,0 +1,21 @@
+@startuml
+
+[*] --> S1_1 : P0-T3 Subnet
+S1_1 --> S1_2 : sleep[x]
+S1_2 --> S1_3 : acquire[monitor]
+S1_3 --> S1_4 : release[monitor]
+S1_4 --> [*]
+
+[*] --> S2_1 : P4-T7 Subnet
+S2_1 --> S2_2 : sleep[y]
+S2_2 --> S2_3 : acquire[monitor]
+S2_3 --> S2_4 : release[monitor]
+S2_4 --> [*]
+
+[*] --> S3_1 : P17-T19 Subnet
+S3_1 --> S3_2 : sleep[z]
+S3_2 --> S3_3 : acquire[monitor]
+S3_3 --> S3_4 : release[monitor]
+S3_4 --> [*]
+
+@enduml
