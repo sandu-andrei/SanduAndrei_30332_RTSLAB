@@ -15,6 +15,7 @@ public class Fir extends Thread{
     }
 
     public void run() {
+
         while (true) {
             try {
                 System.out.println("Fir " + this.name + " State 1");
