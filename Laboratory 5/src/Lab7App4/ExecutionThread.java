@@ -13,7 +13,7 @@ public class ExecutionThread extends Thread{
         this.delay = delay;
         this.semaphore = semaphore;
     }
-    
+
     public void run() {
         while (true) {
             try {

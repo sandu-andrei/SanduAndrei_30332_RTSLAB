@@ -4,18 +4,16 @@ package App4;
 public class ExecutionThread1 extends Thread{
 
     int sleep,activity_min, activity_max;
+    Integer monitor1, monitor2;
 
-    public ExecutionThread1( int sleep, int activity_min, int activity_max) {
+    public ExecutionThread1( int sleep, int activity_min, int activity_max,Integer monitor1,Integer monitor2) {
 
 
         this.sleep = sleep;
         this.activity_min = activity_min;
         this.activity_max = activity_max;
-    }
-
-    public synchronized void waitNotify(String name) throws InterruptedException{
-        System.out.println(name + " waiting");
-        wait();
+        this.monitor1=monitor1;
+        this.monitor2=monitor2;
     }
 
     public void run() {
@@ -32,8 +30,12 @@ public class ExecutionThread1 extends Thread{
             i++;
             i--;
         }
-        synchronized (this) {
-            this.notify();
+        synchronized (monitor1) {
+            monitor1.notify();
         }
+        synchronized (monitor2) {
+            monitor2.notify();
+        }
+        System.out.println( this.getName() + " - STATE 3");
     }
 }
