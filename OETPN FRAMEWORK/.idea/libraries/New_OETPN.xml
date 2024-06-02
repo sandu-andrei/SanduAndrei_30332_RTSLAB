@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="New OETPN">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/src/Lab7/src/New OETPN/New OETPN/miglayout-src.zip!/" />
+      <root url="jar://$PROJECT_DIR$/src/Lab7/src/New OETPN/New OETPN/miglayout15-swing.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
